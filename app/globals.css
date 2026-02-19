@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --font-rubik: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --font-open-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+}
