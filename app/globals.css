@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @theme {
+  /* colors */
+  --color-primary: #4a69e2;
+  --color-secondary: #ffa52f;
+  --color-gray: #e7e7e3;
+  --color-dark-gray: #232321;
+
+  /* fonts */
   --font-rubik: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
   --font-open-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
 }
