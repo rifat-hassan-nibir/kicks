@@ -1,5 +1,5 @@
 import Image from "next/image";
-import searchIcon from "@/public/assets/icons/navbar/Search.svg";
+import searchIcon from "@/public/assets/icons/navbar/Search.png";
 
 export default function SearchButton() {
   return (

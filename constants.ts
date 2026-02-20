@@ -1,4 +1,4 @@
-import menuDropDown from "@/public/assets/icons/navbar/caret_down.svg";
+import menuDropDown from "@/public/assets/icons/navbar/caret_down.png";
 
 export const navMenu = [
   {

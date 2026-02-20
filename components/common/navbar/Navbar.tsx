@@ -1,6 +1,6 @@
 import Image from "next/image";
 import NavMenu from "./NavMenu";
-import userIcon from "@/public/assets/icons/navbar/User.svg";
+import userIcon from "@/public/assets/icons/navbar/User.png";
 import Link from "next/link";
 import SearchButton from "./SearchButton";
 import CartButton from "./CartButton";
@@ -12,7 +12,7 @@ export default function Navbar() {
 
       {/* Logo */}
       <Image
-        src="/assets/logo/nav-logo-desktop.svg"
+        src="/assets/logo/logo.png"
         alt="Logo"
         className="lg:w-32 lg:h-8 w-20 h-5"
         width={128}

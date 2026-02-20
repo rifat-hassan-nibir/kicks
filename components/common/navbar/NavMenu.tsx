@@ -1,8 +1,8 @@
 "use client";
 
 import { navMenu } from "@/constants";
-import mobileMenuIcon from "@/public/assets/icons/navbar/mobile-menu.svg";
-import searchIcon from "@/public/assets/icons/navbar/Search.svg";
+import mobileMenuIcon from "@/public/assets/icons/navbar/mobile-menu.png";
+import searchIcon from "@/public/assets/icons/navbar/Search.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -80,7 +80,7 @@ export default function NavMenu() {
           <div className="flex flex-col h-full gap-6">
             <div className="flex justify-between items-center">
               <Link href="/" onClick={toggleMenu}>
-                <Image src="/assets/logo/nav-logo-desktop.svg" alt="Logo" width={100} height={25} />
+                <Image src="/assets/logo/nav-logo-desktop.png" alt="Logo" width={100} height={25} />
               </Link>
               <button
                 onClick={toggleMenu}
