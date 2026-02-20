@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Rubik } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/common/navbar/Navbar";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -27,6 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.variable} ${openSans.variable} antialiased font-rubik`}>
+        <div className="lg:m-8 m-4">
+          <Navbar />
+        </div>
         {children}
       </body>
     </html>
