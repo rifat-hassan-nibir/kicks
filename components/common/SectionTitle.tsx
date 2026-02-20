@@ -7,7 +7,7 @@ export default function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-rubik md:text-[74px] text-[24px] font-semibold md:leading-[95%] leading-[100%] uppercase ${className}`}
+      className={`font-rubik text-dark-gray md:text-[74px] text-[24px] font-semibold md:leading-[95%] leading-[100%] uppercase ${className}`}
     >
       {children}
     </h2>
