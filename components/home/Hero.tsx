@@ -42,7 +42,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <Button>SHOP NOW</Button>
+          <Button variant="primary">SHOP NOW</Button>
         </div>
 
         {/* Gallery Thumbnails - Right */}
