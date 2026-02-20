@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.variable} ${openSans.variable} antialiased font-rubik`}>
-        <div className="lg:m-8 m-4">
+        <div className="mt-8 px-4 lg:px-0">
           <Navbar />
         </div>
         {children}

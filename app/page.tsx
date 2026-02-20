@@ -1,3 +1,9 @@
+import Hero from "@/components/home/Hero";
+
 export default function Home() {
-  return <h1 className="font-rubik">Kicks</h1>;
+  return (
+    <section className="body-width px-4 lg:px-0">
+      <Hero />
+    </section>
+  );
 }
