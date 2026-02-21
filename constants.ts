@@ -1,3 +1,5 @@
+import categoryImage1 from "@/public/assets/home/categories/lifestayle-shoes.png";
+import categoryImage2 from "@/public/assets/home/categories/basketball-shoes.png";
 import thumbnail1 from "@/public/assets/home/hero/hero-image-2.png";
 import thumbnail2 from "@/public/assets/home/hero/hero-image-3.png";
 import productImage1 from "@/public/assets/home/new-drops/product-1.png";
@@ -59,5 +61,18 @@ export const newDropsProducts = [
     image: productImage4,
     title: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
     price: 125,
+  },
+];
+
+export const categories = [
+  {
+    id: 1,
+    image: categoryImage1,
+    title: "Lifestyle shoes",
+  },
+  {
+    id: 2,
+    image: categoryImage2,
+    title: "Basketball shoes",
   },
 ];

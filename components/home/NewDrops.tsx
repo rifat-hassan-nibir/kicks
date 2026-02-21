@@ -5,7 +5,7 @@ import { newDropsProducts } from "@/constants";
 
 export default function NewDrops() {
   return (
-    <div className="pt-6 lg:pt-22.5 pb-4 lg:pb-32 flex flex-col gap-4 lg:gap-8">
+    <div className="body-width px-4 lg:px-0 pt-6 lg:pt-22.5 pb-4 lg:pb-32 flex flex-col gap-4 lg:gap-8">
       <div className="flex items-end justify-between">
         <SectionTitle>
           Don’t miss out <br />

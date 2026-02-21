@@ -5,7 +5,7 @@ import Button from "../common/Button";
 
 export default function Hero() {
   return (
-    <section className="mt-6 lg:mt-8">
+    <section className="body-width px-4 lg:px-0 mt-6 lg:mt-8">
       {/* Background Headline */}
       <h2 className="text-[60px] sm:text-[80px] md:text-[120px] lg:text-[170px] xl:text-[223px] [@media(max-width:1330px)]:xl:text-[210px] text-center font-bold leading-[100%] tracking-normal uppercase text-dark-gray">
         DO IT <span className="text-primary">RIGHT</span>
