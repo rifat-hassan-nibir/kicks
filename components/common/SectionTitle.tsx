@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export default function SectionTitle({
   children,
   className,
@@ -7,7 +9,10 @@ export default function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-rubik text-dark-gray md:text-[74px] text-[24px] font-semibold md:leading-[95%] leading-[100%] uppercase ${className}`}
+      className={cn(
+        "font-rubik text-dark-gray md:text-[74px] text-[24px] font-semibold md:leading-[95%] leading-[100%] uppercase",
+        className,
+      )}
     >
       {children}
     </h2>
