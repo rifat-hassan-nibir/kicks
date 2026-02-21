@@ -16,12 +16,17 @@ export default function ProductCard({ productImage, title, price }: ProductCardP
           New
         </span>
       </div>
-      <h3 className="font-rubik text-dark-gray text-[24px] font-semibold leading-[100%] uppercase">
-        {title}
-      </h3>
-      <Button variant="secondary" className="w-full bg-dark-gray">
-        VIEW PRODUCT - <span className="text-secondary">${price}</span>
-      </Button>
+      <div className="flex flex-col gap-2 lg:gap-4">
+        <h3 className="font-rubik text-dark-gray text-[16px] lg:text-[24px] font-semibold leading-[100%] uppercase">
+          {title}
+        </h3>
+        <Button
+          variant="secondary"
+          className="w-full bg-dark-gray py-3.25 lg:py-[15.5px] text-[12px] lg:text-[14px]"
+        >
+          VIEW PRODUCT - <span className="text-secondary">${price}</span>
+        </Button>
+      </div>
     </div>
   );
 }
