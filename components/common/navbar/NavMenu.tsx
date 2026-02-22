@@ -80,7 +80,7 @@ export default function NavMenu() {
           <div className="flex flex-col h-full gap-6">
             <div className="flex justify-between items-center">
               <Link href="/" onClick={toggleMenu}>
-                <Image src="/assets/logo/nav-logo-desktop.png" alt="Logo" width={100} height={25} />
+                <Image src="/assets/logo/logo.png" alt="Logo" width={100} height={25} />
               </Link>
               <button
                 onClick={toggleMenu}
