@@ -7,6 +7,10 @@ import productImage2 from "@/public/assets/home/new-drops/product-2.png";
 import productImage3 from "@/public/assets/home/new-drops/product-3.png";
 import productImage4 from "@/public/assets/home/new-drops/product-4.png";
 import menuDropDown from "@/public/assets/icons/navbar/caret_down.png";
+import facebookIcon from "@/public/assets/icons/footer/facebook-icon.png";
+import instagramIcon from "@/public/assets/icons/footer/instagram-icon.png";
+import twitterIcon from "@/public/assets/icons/footer/twitter-icon.png";
+import tiktokIcon from "@/public/assets/icons/footer/tiktok-icon.png";
 
 export const navMenu = [
   {
@@ -74,5 +78,83 @@ export const categories = [
     id: 2,
     image: categoryImage2,
     title: "Basketball shoes",
+  },
+];
+
+export const footerCategories = [
+  {
+    id: 1,
+    title: "Runners",
+    href: "#",
+  },
+  {
+    id: 2,
+    title: "Sneakers",
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Basketball",
+    href: "#",
+  },
+  {
+    id: 4,
+    title: "Outdoor",
+    href: "#",
+  },
+  {
+    id: 5,
+    title: "Golf",
+    href: "#",
+  },
+  {
+    id: 6,
+    title: "Hiking",
+    href: "#",
+  },
+];
+
+export const footerCompany = [
+  {
+    id: 1,
+    title: "About",
+    href: "#",
+  },
+  {
+    id: 2,
+    title: "Contact",
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Blogs",
+    href: "#",
+  },
+];
+
+export const footerSocialLinks = [
+  {
+    id: 1,
+    title: "Facebook",
+    icon: facebookIcon,
+    href: "#",
+  },
+  {
+    id: 2,
+    title: "Instagram",
+    icon: instagramIcon,
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Twitter",
+    icon: twitterIcon,
+    href: "#",
+  },
+  {
+    id: 4,
+    title: "Tiktok",
+    icon: tiktokIcon,
+    href: "#",
   },
 ];

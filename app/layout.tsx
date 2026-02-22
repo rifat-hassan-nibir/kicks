@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Open_Sans, Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/navbar/Navbar";
+import NewsLetter from "@/components/common/footer/NewsLetter";
+import Footer from "@/components/common/footer/Footer";
+import BottomBar from "@/components/common/footer/BottomBar";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -32,6 +35,11 @@ export default function RootLayout({
           <Navbar />
         </div>
         {children}
+        <div className="px-4 lg:px-0">
+          <NewsLetter />
+          <Footer />
+          <BottomBar />
+        </div>
       </body>
     </html>
   );

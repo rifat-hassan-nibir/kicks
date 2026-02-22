@@ -1,13 +1,7 @@
 export default function BottomBar() {
   return (
-    <div className="body-width px-4 lg:px-0">
-      <div className="flex items-center justify-between">
-        <p>© 2026 Kicks. All rights reserved.</p>
-        <div className="flex items-center gap-4">
-          <p>Privacy Policy</p>
-          <p>Terms of Service</p>
-        </div>
-      </div>
+    <div className="body-width pt-6 lg:pt-7 pb-6 lg:pb-4.5">
+      <p className="font-open-sans text-[16px] text-center block">© All rights reserved </p>
     </div>
   );
 }
