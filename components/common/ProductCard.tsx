@@ -10,9 +10,9 @@ interface ProductCardProps {
 export default function ProductCard({ productImage, title, price }: ProductCardProps) {
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative bg-[#FAFAFA] p-2 rounded-[28px]">
-        <Image src={productImage} width={318} height={350} alt="Product" className="rounded-3xl" />
-        <span className="absolute top-2 left-2 flex items-center justify-center px-4 py-3 w-14.5 h-9.5 bg-primary rounded-tl-3xl rounded-br-3xl text-white text-[12px] font-semibold leading-0">
+      <div className="relative bg-[#FAFAFA] p-2 rounded-2xl lg:rounded-[28px]">
+        <Image src={productImage} width={318} height={350} alt="Product" />
+        <span className="absolute top-2 left-2 flex items-center justify-center w-10.5 h-5.5 lg:w-14.5 lg:h-9.5 px-2 py-1 lg:px-4 lg:py-3 bg-primary rounded-tl-xl rounded-br-[13px] lg:rounded-tl-3xl lg:rounded-br-3xl text-white text-[12px] font-semibold leading-[100%]">
           New
         </span>
       </div>
