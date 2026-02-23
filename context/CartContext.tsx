@@ -2,6 +2,7 @@
 
 import { CartAction, CartItem, CartState } from "@/types/cart";
 import { createContext, ReactNode, useContext, useEffect, useReducer } from "react";
+import { useToast } from "./ToastContext";
 
 const initialState: CartState = {
   items: [],
@@ -27,8 +28,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       let newItems;
       if (existingItemIndex > -1) {
-        newItems = [...state.items];
-        newItems[existingItemIndex].quantity += action.payload.quantity;
+        newItems = state.items.map((item, index) =>
+          index === existingItemIndex
+            ? { ...item, quantity: item.quantity + action.payload.quantity }
+            : item,
+        );
       } else {
         newItems = [...state.items, action.payload];
       }
@@ -103,6 +107,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+  const { showToast } = useToast();
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -124,7 +129,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [state]);
 
-  const addItem = (item: CartItem) => dispatch({ type: "ADD_ITEM", payload: item });
+  const addItem = (item: CartItem) => {
+    dispatch({ type: "ADD_ITEM", payload: item });
+    showToast(item.title, "success", item.images?.[0] || (item as any).image);
+  };
   const removeItem = (id: number, selectedSize: number, selectedColorHex: string) =>
     dispatch({ type: "REMOVE_ITEM", payload: { id, selectedSize, selectedColorHex } });
   const updateQuantity = (
