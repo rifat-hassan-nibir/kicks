@@ -11,13 +11,15 @@ export default function Navbar() {
       <NavMenu />
 
       {/* Logo */}
-      <Image
-        src="/assets/logo/logo.png"
-        alt="Logo"
-        className="lg:w-32 lg:h-8 w-20 h-5"
-        width={128}
-        height={32}
-      />
+      <Link href="/">
+        <Image
+          src="/assets/logo/logo.png"
+          alt="Logo"
+          className="lg:w-32 lg:h-8 w-20 h-5"
+          width={128}
+          height={32}
+        />
+      </Link>
 
       {/* Extra Menus */}
       <div className="flex items-center lg:gap-10 gap-2.25 lg:w-75.25 justify-end">
