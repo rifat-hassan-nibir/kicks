@@ -12,10 +12,43 @@
   --font-open-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
 body {
   @apply bg-gray;
+  overflow-x: hidden;
 }
 
 .body-width {
   @apply max-w-330 mx-auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: fadeInUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Custom shadow for cards */
+.hover-card-shadow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-card-shadow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
 }

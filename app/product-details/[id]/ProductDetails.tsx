@@ -38,7 +38,7 @@ export default function ProductDetails({
   };
 
   return (
-    <section className="body-width px-4 lg:px-0 mt-6 lg:mt-8">
+    <section className="body-width px-4 lg:px-0 mt-6 lg:mt-8 animate-fade-in-up">
       {/* Product Section */}
       <div className="flex flex-col lg:flex-row gap-4">
         {/* Image Gallery */}

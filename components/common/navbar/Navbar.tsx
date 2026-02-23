@@ -1,9 +1,9 @@
-import Image from "next/image";
-import NavMenu from "./NavMenu";
 import userIcon from "@/public/assets/icons/navbar/User.png";
+import Image from "next/image";
 import Link from "next/link";
-import SearchButton from "./SearchButton";
 import CartButton from "./CartButton";
+import NavMenu from "./NavMenu";
+import SearchButton from "./SearchButton";
 
 export default function Navbar() {
   return (
@@ -15,7 +15,7 @@ export default function Navbar() {
         <Image
           src="/assets/logo/logo.png"
           alt="Logo"
-          className="lg:w-32 lg:h-8 w-20 h-5"
+          className="lg:w-32 lg:h-8 w-20 h-5 transition-transform duration-300 hover:scale-110 active:scale-95"
           width={128}
           height={32}
         />
