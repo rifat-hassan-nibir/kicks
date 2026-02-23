@@ -1,13 +1,21 @@
+"use client";
+
 import Button from "@/components/common/Button";
 import ProductSlider from "@/components/common/ProductSlider";
 import { newDropsProducts } from "@/constants";
-import arrowDownIcon from "@/public/assets/icons/arrow-down.svg";
+import { useCart } from "@/context/CartContext";
 import binIcon from "@/public/assets/icons/Bin.svg";
 import heartIcon from "@/public/assets/icons/heart.svg";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function CartPage() {
+  const { items, totalPrice, removeItem, updateQuantity } = useCart();
+
+  const deliveryFee = 6.99;
+  const salesTax = 0;
+  const finalTotal = totalPrice + deliveryFee + salesTax;
+
   return (
     <section className="body-width mt-6 lg:mt-9 px-4 lg:px-0">
       {/* Title */}
@@ -30,9 +38,9 @@ export default function CartPage() {
         </p>
       </div>
 
-      <div className="mt-6 lg:mt-9 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-11.75">
+      <div className="mt-6 lg:mt-9 flex flex-col lg:flex-row gap-6 lg:gap-11.75 items-start">
         {/* Your Bag */}
-        <div className="flex-1 rounded-2xl bg-[#FAFAFA] p-4 lg:p-6 space-y-2">
+        <div className="flex-1 rounded-2xl bg-[#FAFAFA] p-4 lg:p-6 space-y-2 w-full">
           <p className="text-[20px] lg:text-[32px] font-semibold text-dark-gray leading-tight">
             Your Bag
           </p>
@@ -40,67 +48,104 @@ export default function CartPage() {
             Items in your bag not reserved- check out now to make them yours.
           </p>
 
-          <div className="mt-2 lg:mt-12">
-            {/* Cart Item */}
-            <div className="flex gap-4 lg:gap-6">
-              {/* Product Image */}
-              <div className="relative w-39.25 h-auto lg:w-52 lg:h-52 rounded-2xl lg:rounded-[28px] overflow-hidden bg-gray shrink-0">
-                <Image
-                  src={newDropsProducts[0].image}
-                  alt="Dropset Trainer Shoes"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Product Details */}
-              <div className="flex flex-col w-full">
-                {/* Top line desktop vs mobile */}
-                <div className="flex justify-between items-start">
-                  <h3 className="font-rubik text-dark-gray text-[16px] lg:text-[24px] font-semibold uppercase leading-tight max-w-50 lg:max-w-none">
-                    Dropset Trainer Shoes
-                  </h3>
-                  <p className="hidden lg:block font-rubik text-primary lg:text-[24px] font-semibold leading-tight">
-                    $130.00
-                  </p>
-                </div>
-
-                <p className="font-open-sans font-semibold text-dark-gray/80 text-[14px] lg:text-[20px] mt-1 lg:mt-2">
-                  Men's Road Running Shoes
-                </p>
-                <p className="font-open-sans font-semibold text-dark-gray/80 text-[14px] lg:text-[20px] mt-1lg:mt-2">
-                  Enamel Blue/ University White
-                </p>
-
-                <div className="flex items-center gap-4 lg:gap-10 mt-2 lg:mt-5">
-                  <div className="flex items-center gap-6 lg:cursor-pointer">
-                    <span className="font-open-sans text-dark-gray/80 text-[16px] lg:text-[20px] font-semibold leading-tight">
-                      Size 10
-                    </span>
-                    <Image src={arrowDownIcon} alt="Arrow Down" className="hidden lg:block" />
+          <div className="mt-2 lg:mt-12 space-y-8 lg:space-y-12">
+            {items.length === 0 ? (
+              <p className="font-open-sans text-[18px] text-dark-gray/60 py-10">
+                Your cart is empty.
+              </p>
+            ) : (
+              items.map((item) => (
+                <div
+                  key={`${item.id}-${item.selectedSize}-${item.selectedColor.hex}`}
+                  className="flex gap-4 lg:gap-6 border-b border-gray/50 pb-8 last:border-0"
+                >
+                  {/* Product Image */}
+                  <div className="relative w-39.25 h-auto lg:w-52 lg:h-52 rounded-2xl lg:rounded-[28px] overflow-hidden bg-gray shrink-0">
+                    <Image
+                      src={item.images[0]}
+                      alt={item.title}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="flex items-center gap-6 lg:cursor-pointer">
-                    <span className="font-open-sans text-dark-gray/80 text-[16px] lg:text-[20px] font-semibold leading-tight">
-                      Quantity 1
-                    </span>
-                    <Image src={arrowDownIcon} alt="Arrow Down" className="hidden lg:block" />
+
+                  {/* Product Details */}
+                  <div className="flex flex-col w-full">
+                    {/* Top line desktop vs mobile */}
+                    <div className="flex justify-between items-start">
+                      <h3 className="font-rubik text-dark-gray text-[16px] lg:text-[24px] font-semibold uppercase leading-tight max-w-50 lg:max-w-none">
+                        {item.title}
+                      </h3>
+                      <p className="hidden lg:block font-rubik text-primary lg:text-[24px] font-semibold leading-tight">
+                        ${item.price.toFixed(2)}
+                      </p>
+                    </div>
+
+                    <p className="font-open-sans font-semibold text-dark-gray/80 text-[14px] lg:text-[20px] mt-1 lg:mt-2">
+                      {item.selectedColor.name}
+                    </p>
+
+                    <div className="flex items-center gap-4 lg:gap-10 mt-2 lg:mt-5">
+                      <div className="flex items-center gap-2 lg:gap-6">
+                        <span className="font-open-sans text-dark-gray/80 text-[16px] lg:text-[20px] font-semibold leading-tight">
+                          Size {item.selectedSize}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 lg:gap-4 border border-dark-gray/20 rounded-md px-2 py-1">
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item.id,
+                              item.selectedSize,
+                              item.selectedColor.hex,
+                              Math.max(1, item.quantity - 1),
+                            )
+                          }
+                          className="px-2 font-bold cursor-pointer"
+                        >
+                          -
+                        </button>
+                        <span className="font-open-sans text-dark-gray/80 text-[16px] lg:text-[20px] font-semibold leading-tight">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item.id,
+                              item.selectedSize,
+                              item.selectedColor.hex,
+                              item.quantity + 1,
+                            )
+                          }
+                          className="px-2 font-bold cursor-pointer"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <p className="block lg:hidden font-rubik text-primary text-[20px] font-semibold leading-tight mt-4">
+                      ${item.price.toFixed(2)}
+                    </p>
+
+                    <div className="flex items-center gap-2 lg:gap-6 mt-2 lg:mt-12">
+                      <button className="cursor-pointer hover:opacity-70 transition-opacity">
+                        <Image src={heartIcon} alt="Heart" className="w-6 h-6 lg:w-8 lg:h-8" />
+                      </button>
+                      <button
+                        onClick={() =>
+                          removeItem(item.id, item.selectedSize, item.selectedColor.hex)
+                        }
+                        className="cursor-pointer hover:opacity-70 transition-opacity"
+                      >
+                        <Image src={binIcon} alt="Bin" className="w-6 h-6 lg:w-8 lg:h-8" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                <p className="block lg:hidden font-rubik text-primary text-[20px] font-semibold leading-tight mt-4">
-                  $130.00
-                </p>
-
-                <div className="flex items-center gap-2 lg:gap-6 mt-2 lg:mt-12">
-                  <button className="cursor-pointer hover:opacity-70 transition-opacity">
-                    <Image src={heartIcon} alt="Heart" className="w-6 h-6 lg:w-8 lg:h-8" />
-                  </button>
-                  <button className="cursor-pointer hover:opacity-70 transition-opacity">
-                    <Image src={binIcon} alt="Bin" className="w-6 h-6 lg:w-8 lg:h-8" />
-                  </button>
-                </div>
-              </div>
-            </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -110,50 +155,55 @@ export default function CartPage() {
             Order Summery
           </p>
 
-          <div className="space-y-4">
+          <div className="space-y-4 font-open-sans">
             {/* Item Count */}
             <div className="flex justify-between">
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
-                1 ITEM
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
+                {items.length} ITEM{items.length !== 1 ? "S" : ""}
               </p>
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
-                $130.00
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
+                ${totalPrice.toFixed(2)}
               </p>
             </div>
 
             {/* Delivery */}
             <div className="flex justify-between">
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
                 Delivery
               </p>
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
-                $130.00
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
+                ${deliveryFee.toFixed(2)}
               </p>
             </div>
 
             {/* Sales Tax */}
             <div className="flex justify-between">
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray leading-tight">
                 Sales Tax
               </p>
-              <p className="font-open-sans text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
-                $130.00
+              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
+                ${salesTax.toFixed(2)}
               </p>
             </div>
 
             {/* Total */}
-            <div className="flex justify-between">
-              <p className="text-[20px] lg:text-[24px] font-semibold text-dark-gray leading-tight">
+            <div className="flex justify-between border-t border-gray pt-4">
+              <p className="text-[20px] lg:text-[24px] font-bold text-dark-gray leading-tight font-rubik">
                 Total
               </p>
-              <p className="text-[16px] lg:text-[20px] font-semibold text-dark-gray opacity-80 leading-tight">
-                $130.00
+              <p className="text-[16px] lg:text-[20px] font-bold text-dark-gray leading-tight font-rubik">
+                ${finalTotal.toFixed(2)}
               </p>
             </div>
           </div>
 
           {/* Checkout Button */}
-          <Button className="w-full py-[15.5px] text-[14px] leading-tight">CHECKOUT</Button>
+          <Button
+            className="w-full py-[15.5px] text-[14px] leading-tight"
+            disabled={items.length === 0}
+          >
+            CHECKOUT
+          </Button>
 
           {/* Promo Code */}
           <button className="text-[16px] lg:text-[20px] underline font-semibold text-dark-gray hover:cursor-pointer">

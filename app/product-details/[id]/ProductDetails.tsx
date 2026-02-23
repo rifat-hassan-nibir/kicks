@@ -1,6 +1,7 @@
 "use client";
 
 import ProductSlider from "@/components/common/ProductSlider";
+import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/products";
 import Image from "next/image";
 import { useState } from "react";
@@ -19,11 +20,22 @@ export default function ProductDetails({
   productInfo: Product;
   similarProducts: Product[];
 }) {
+  const { addItem } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<number | null>(38);
   const [selectedColor, setSelectedColor] = useState(0);
 
   const images = productInfo?.images?.length > 0 ? productInfo.images : [];
+
+  const handleAddToCart = () => {
+    if (!selectedSize) return;
+    addItem({
+      ...productInfo,
+      selectedSize,
+      selectedColor: colors[selectedColor],
+      quantity: 1,
+    });
+  };
 
   return (
     <section className="body-width px-4 lg:px-0 mt-6 lg:mt-8">
@@ -159,7 +171,10 @@ export default function ProductDetails({
           {/* Action Buttons */}
           <div className="flex flex-col gap-2">
             <div className="flex gap-2">
-              <button className="flex-1 bg-dark-gray text-white text-[13px] lg:text-[14px] font-semibold py-3.5 lg:py-4 rounded-lg cursor-pointer hover:bg-dark-gray/90 transition-colors active:scale-[0.98]">
+              <button
+                onClick={() => handleAddToCart()}
+                className="flex-1 bg-dark-gray text-white text-[13px] lg:text-[14px] font-semibold py-3.5 lg:py-4 rounded-lg cursor-pointer hover:bg-dark-gray/90 transition-colors active:scale-[0.98]"
+              >
                 ADD TO CART
               </button>
               <button className="w-11 h-12 lg:w-12 lg:h-13 bg-dark-gray rounded-lg flex items-center justify-center cursor-pointer hover:bg-dark-gray/90 transition-colors active:scale-[0.98]">
