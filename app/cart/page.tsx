@@ -2,19 +2,42 @@
 
 import Button from "@/components/common/Button";
 import ProductSlider from "@/components/common/ProductSlider";
-import { newDropsProducts } from "@/constants";
 import { useCart } from "@/context/CartContext";
+import { getProducts } from "@/data/products";
 import binIcon from "@/public/assets/icons/Bin.svg";
 import heartIcon from "@/public/assets/icons/heart.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import CartLoadingSkeleton from "@/components/cart/CartLoadingSkeleton";
 
 export default function CartPage() {
   const { items, totalPrice, removeItem, updateQuantity } = useCart();
+  const [similarProducts, setSimilarProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const deliveryFee = 6.99;
   const salesTax = 0;
   const finalTotal = totalPrice + deliveryFee + salesTax;
+
+  useEffect(() => {
+    const fetchSimilarProducts = async () => {
+      try {
+        const product = await getProducts();
+        const similarProducts = product.slice(0, 4);
+        setSimilarProducts(similarProducts);
+      } catch (error) {
+        console.error("Error fetching similar products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSimilarProducts();
+  }, []);
+
+  if (loading) {
+    return <CartLoadingSkeleton />;
+  }
 
   return (
     <section className="body-width mt-6 lg:mt-9 px-4 lg:px-0">
@@ -214,7 +237,7 @@ export default function CartPage() {
 
       {/* You may also like Section */}
       <div className="mt-8 lg:mt-20 mb-8 lg:mb-16">
-        <ProductSlider title="You may also like" products={newDropsProducts} />
+        <ProductSlider title="You may also like" products={similarProducts} />
       </div>
     </section>
   );

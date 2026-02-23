@@ -1,5 +1,5 @@
 import ProductNotFound from "@/components/ui/ProductNotFound";
-import { getProductById, getProducts, getRelatedProductsById } from "@/data/products";
+import { getProductById, getRelatedProductsById } from "@/data/products";
 import ProductDetails from "./ProductDetails";
 
 export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
