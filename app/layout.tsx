@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 import { CartProvider } from "@/context/CartContext";
+import { ToastProvider } from "@/context/ToastContext";
 
 export default function RootLayout({
   children,
@@ -33,17 +34,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.variable} ${openSans.variable} antialiased font-rubik`}>
-        <CartProvider>
-          <div className="mt-8 px-4 lg:px-0">
-            <Navbar />
-          </div>
-          {children}
-          <div className="px-4 lg:px-0">
-            <NewsLetter />
-            <Footer />
-            <BottomBar />
-          </div>
-        </CartProvider>
+        <ToastProvider>
+          <CartProvider>
+            <div className="mt-8 px-4 lg:px-0">
+              <Navbar />
+            </div>
+            {children}
+            <div className="px-4 lg:px-0">
+              <NewsLetter />
+              <Footer />
+              <BottomBar />
+            </div>
+          </CartProvider>
+        </ToastProvider>
       </body>
     </html>
   );
