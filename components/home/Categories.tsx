@@ -10,8 +10,8 @@ export default function Categories() {
         <div className="flex items-end justify-between mb-8 lg:mb-12">
           <SectionTitle className="text-white">CATEGORIES</SectionTitle>
           <div className="flex items-center gap-2 lg:gap-4">
-            <SliderButton direction="left" className="bg-[#B2B2B2]/40 " />
-            <SliderButton direction="right" />
+            <SliderButton direction="left" className="bg-[#B2B2B2]/40" type="gray" />
+            <SliderButton direction="right" type="gray" />
           </div>
         </div>
 
