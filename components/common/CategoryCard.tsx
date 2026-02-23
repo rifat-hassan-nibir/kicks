@@ -24,6 +24,9 @@ export default function CategoryCard({
         <Image
           src={categoryImage}
           alt={title || "Category Image"}
+          width={690}
+          height={600}
+          unoptimized
           className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-110"
         />
       </div>

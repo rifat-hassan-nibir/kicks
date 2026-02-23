@@ -1,9 +1,12 @@
+import { Product } from "@/types/products";
 import Button from "../common/Button";
 import ProductCard from "../common/ProductCard";
 import SectionTitle from "../common/SectionTitle";
-import { newDropsProducts } from "@/constants";
+import { getProducts } from "@/data/products";
 
-export default function NewDrops() {
+export default async function NewDrops() {
+  const products = await getProducts();
+
   return (
     <div className="body-width px-4 lg:px-0 pt-6 lg:pt-22.5 pb-4 lg:pb-32 flex flex-col gap-4 lg:gap-8">
       <div className="flex items-end justify-between">
@@ -14,13 +17,8 @@ export default function NewDrops() {
         <Button variant="primary">SHOP NEW DROPS</Button>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">
-        {newDropsProducts.map((item) => (
-          <ProductCard
-            key={item.id}
-            productImage={item.image}
-            title={item.title}
-            price={item.price}
-          />
+        {products.slice(0, 4).map((item: Product) => (
+          <ProductCard key={item.id} productInfo={item} />
         ))}
       </div>
     </div>

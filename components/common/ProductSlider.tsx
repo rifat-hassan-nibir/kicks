@@ -1,11 +1,11 @@
 import { StaticImageData } from "next/image";
 import ProductCard from "./ProductCard";
-import SectionTitle from "./SectionTitle";
 import SliderButton from "./SliderButton";
 
 interface Product {
   id: string | number;
-  image: string | StaticImageData | any;
+  image?: string | StaticImageData | any;
+  images?: string[];
   title: string;
   price: number | string;
 }
@@ -41,12 +41,7 @@ export default function ProductSlider({
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6">
         {products.map((item) => (
-          <ProductCard
-            key={item.id}
-            productImage={item.image}
-            title={item.title}
-            price={item.price}
-          />
+          <ProductCard key={item.id} productInfo={item} />
         ))}
       </div>
     </div>
